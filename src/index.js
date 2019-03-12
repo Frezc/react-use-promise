@@ -18,14 +18,14 @@ function reducer(state, action) {
   switch (action.type) {
     case states.pending:
       return {
-        error: undefined,
-        result: undefined,
+        error: null,
+        result: null,
         state: states.pending
       };
 
     case states.resolved:
       return {
-        error: undefined,
+        error: null,
         result: action.payload,
         state: states.resolved
       };
@@ -33,7 +33,7 @@ function reducer(state, action) {
     case states.rejected:
       return {
         error: action.payload,
-        result: undefined,
+        result: null,
         state: states.rejected
       };
 
@@ -45,8 +45,8 @@ function reducer(state, action) {
 
 function usePromise(promise, inputs) {
   const [{ error, result, state }, dispatch] = useReducer(reducer, {
-    error: undefined,
-    result: undefined,
+    error: null,
+    result: null,
     state: states.pending
   });
 
