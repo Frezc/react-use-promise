@@ -1,3 +1,8 @@
+# react-use-promise-alternative
+- keep result when recall promise
+
+---
+
 # react-use-promise
 
 [![CircleCI](https://circleci.com/gh/bsonntag/react-use-promise.svg?style=svg)](https://circleci.com/gh/bsonntag/react-use-promise)

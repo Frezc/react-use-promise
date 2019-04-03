@@ -34,7 +34,7 @@ function reducer(state, action) {
     case states.pending:
       return {
         error: undefined,
-        result: undefined,
+        result: state.result,
         state: states.pending
       };
 
