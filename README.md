@@ -1,5 +1,6 @@
 # react-use-promise-alternative
 - keep result when recall promise
+- resolved if return non promise
 
 ---
 

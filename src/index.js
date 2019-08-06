@@ -8,6 +8,10 @@ function resolvePromise(promise) {
   return promise;
 }
 
+function thenable(promise) {
+  return !!promise && typeof promise.then === 'function';
+}
+
 const states = {
   pending: 'pending',
   rejected: 'rejected',
@@ -53,7 +57,10 @@ function usePromise(promise, inputs) {
   useEffect(() => {
     promise = resolvePromise(promise);
 
-    if (!promise) {
+    if (!thenable(promise)) {
+      // If not promise, set state to resolved
+      dispatch({ result: promise, type: states.resolved });
+
       return;
     }
 
