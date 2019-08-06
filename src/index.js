@@ -59,7 +59,7 @@ function usePromise(promise, inputs) {
 
     if (!thenable(promise)) {
       // If not promise, set state to resolved
-      dispatch({ result: promise, type: states.resolved });
+      dispatch({ payload: promise, type: states.resolved });
 
       return;
     }

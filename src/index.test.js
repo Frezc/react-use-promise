@@ -84,16 +84,6 @@ test('should return the rejected value', () => {
   expect(error).toBe('foo');
 });
 
-test('should return an undefined result if there is no promise', () => {
-  let result;
-
-  testHook(() => {
-    [result] = usePromise(null, []);
-  });
-
-  expect(result).toBe(undefined);
-});
-
 test('should return to the pending state if the inputs change', () => {
   const promise = new TestPromise();
   let inputs = [false];
@@ -134,4 +124,13 @@ test('should call the callback again if the inputs change', () => {
   rerender();
 
   expect(callback).toBeCalledTimes(2);
+});
+
+test('should resolve if return non promise', () => {
+  const { result } = testHook(() => {
+    return usePromise(() => 'a', []);
+  });
+
+  expect(result.current[2]).toBe('resolved');
+  expect(result.current[0]).toBe('a');
 });

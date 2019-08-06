@@ -23,6 +23,10 @@ function resolvePromise(promise) {
   return promise;
 }
 
+function thenable(promise) {
+  return !!promise && typeof promise.then === 'function';
+}
+
 var states = {
   pending: 'pending',
   rejected: 'rejected',
@@ -75,7 +79,12 @@ function usePromise(promise, inputs) {
   (0, _react.useEffect)(function () {
     promise = resolvePromise(promise);
 
-    if (!promise) {
+    if (!thenable(promise)) {
+      // If not promise, set state to resolved
+      dispatch({
+        payload: promise,
+        type: states.resolved
+      });
       return;
     }
 
